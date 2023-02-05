@@ -22,7 +22,7 @@
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="5La-8b-xNB">
                                 <rect key="frame" x="30" y="89" width="333" height="699"/>
                                 <subviews>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua." textAlignment="center" lineBreakMode="wordWrap" numberOfLines="7" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9fn-dF-e0x">
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Test" textAlignment="center" lineBreakMode="wordWrap" numberOfLines="14" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9fn-dF-e0x">
                                         <rect key="frame" x="30" y="0.0" width="273" height="349.66666666666669"/>
                                         <fontDescription key="fontDescription" type="boldSystem" pointSize="24"/>
                                         <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -80,6 +80,11 @@
                             <constraint firstItem="GQ8-SE-hea" firstAttribute="trailing" secondItem="8bC-Xf-vdC" secondAttribute="trailing" id="g1h-nY-XCY"/>
                         </constraints>
                     </view>
+                    <connections>
+                        <outlet property="optionOneBtn" destination="eh0-sZ-EKV" id="xyM-QO-jix"/>
+                        <outlet property="optionTwoBtn" destination="8EE-WJ-DlD" id="qqf-Kv-cCk"/>
+                        <outlet property="promptLabel" destination="9fn-dF-e0x" id="eQe-Bc-Uvt"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
