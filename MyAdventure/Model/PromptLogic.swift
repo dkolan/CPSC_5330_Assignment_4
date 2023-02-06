@@ -47,7 +47,7 @@ struct PromptLogic {
         ),
     ]
     
-    mutating func compareUserChoice(_ key: String, _ choice: String) -> String {
+    mutating func compareUserChoice(_ key: String, _ choice: String) {
 //        let currentCoordinates = key.components(separatedBy: ",")
 //        let x : Int? = Int(currentCoordinates[0])
 //        let y : Int? = Int(currentCoordinates[0])
@@ -56,26 +56,30 @@ struct PromptLogic {
         let y : Int? = Int(currentCoordinates.components(separatedBy: ",")[1])
         
         if choice == prompts[key]?.option_one {
-            var newX : Int = x! + 1
-            var newY : Int = y! * 2
+            let newX : Int = x! + 1
+            let newY : Int = y! * 2
             newCoordinates = String(newX) + "," + String(newY)
         } else {
-            var newX : Int = x! + 1
-            var newY : Int = (y! * 2) + 1
+            let newX : Int = x! + 1
+            let newY : Int = (y! * 2) + 1
             newCoordinates = String(newX) + "," + String(newY)
         }
-        return newCoordinates
+        currentCoordinates = newCoordinates
+//        return newCoordinates
     }
     
-    func getPrompt(_ key: String) -> String {
-        guard let prompt = prompts[key]?.prompt else { return "Unknown prompt"}
+    func getPrompt(_ key: String) -> String? {
+        guard let prompt = prompts[key]?.prompt else { return nil}
         return prompt
     }
     
-    func getSpecifiedOption(_ key: String, _ option: Int) -> String {
-        guard let retOption = option == 0 ? prompts[key]?.option_one : prompts[key]?.option_two else { return "Unknown prompt" }
-//        guard let retOption = prompts[key]?.prompt else { return "Unknown prompt"}
+    func getSpecifiedOption(_ key: String, _ option: Int) -> String? {
+        guard let retOption = option == 0 ? prompts[key]?.option_one : prompts[key]?.option_two else { return nil }
         return retOption
+    }
+    
+    func getCurrentCoordinates() -> String {
+        return currentCoordinates
     }
     
     // Add new images per prompt?
