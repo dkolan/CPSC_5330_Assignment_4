@@ -8,6 +8,7 @@
 import Foundation
 
 struct PromptLogic {
+    let MAX_DECISION_TREE_DEPTH = 2
     var currentCoordinates : String = "0,0"
     let prompts = [
         "0,0" : Prompt(
@@ -54,18 +55,24 @@ struct PromptLogic {
         var newCoordinates : String = ""
         let x : Int? = Int(currentCoordinates.components(separatedBy: ",")[0])
         let y : Int? = Int(currentCoordinates.components(separatedBy: ",")[1])
+        var newX : Int
+        var newY : Int
         
         if choice == prompts[key]?.option_one {
-            let newX : Int = x! + 1
-            let newY : Int = y! * 2
+            newX = x! + 1
+            newY = y! * 2
             newCoordinates = String(newX) + "," + String(newY)
         } else {
-            let newX : Int = x! + 1
-            let newY : Int = (y! * 2) + 1
+            newX = x! + 1
+            newY = (y! * 2) + 1
             newCoordinates = String(newX) + "," + String(newY)
         }
-        currentCoordinates = newCoordinates
-//        return newCoordinates
+        
+        if newX > MAX_DECISION_TREE_DEPTH {
+            currentCoordinates = "0,0"
+        } else {
+            currentCoordinates = newCoordinates
+        }
     }
     
     func getPrompt(_ key: String) -> String? {
