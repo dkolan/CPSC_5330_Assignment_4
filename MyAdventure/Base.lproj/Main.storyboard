@@ -87,6 +87,7 @@
                         </constraints>
                     </view>
                     <connections>
+                        <outlet property="background" destination="GQ8-SE-hea" id="4cQ-M9-yuB"/>
                         <outlet property="optionOneBtn" destination="eh0-sZ-EKV" id="xyM-QO-jix"/>
                         <outlet property="optionTwoBtn" destination="8EE-WJ-DlD" id="qqf-Kv-cCk"/>
                         <outlet property="promptLabel" destination="9fn-dF-e0x" id="eQe-Bc-Uvt"/>

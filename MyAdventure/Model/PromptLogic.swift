@@ -8,50 +8,102 @@
 import Foundation
 
 struct PromptLogic {
-    let MAX_DECISION_TREE_DEPTH = 2
+    let MAX_DECISION_TREE_DEPTH = 3
     var currentCoordinates : String = "0,0"
     let prompts = [
         "0,0" : Prompt(
             "You find yourself in the entrance of a strange cave. You see two rooms: one with a warm and inviting path is illuminated by soft light; the other is a dark and foreboding path beckons.",
             "Go left",
-            "Go right"
+            "Go right",
+            "caveStart"
         ),
-        "1,0" : Prompt(
-            "The left room fills with a warm light as you enter; however, you notice three passageways. One door, and one hatch.",
-            "Door",
-            "Hatch"
-        ),
+            "1,0" : Prompt(
+                "The left room fills with a warm light as you enter; however, you notice two passageways. One door, and one hatch.",
+                "Door",
+                "Hatch",
+                "1-0"
+            ),
+                "2,0" : Prompt(
+                    "You open the door and you are at a crossroads. Ahead is a path lit by glowing mushrooms. To your right is a path lit by flickering torches.",
+                    "Go straight",
+                    "Go right",
+                    "2-0"
+                ),
+                    "3,0" : Prompt(
+                        "The mushroom spores are making you feel woozy. You are now a mushroom. Oh dear.",
+                        "Restart",
+                        "Restart",
+                        "3-0"
+                    ),
+                    "3,1" : Prompt(
+                        "You've found a room filled with gold coins, hooray! Unfortunately, it's all a dream and you wake up in your Twitter sponsored prison cell in Muskburgh, Mars.",
+                        "Restart",
+                        "Restart",
+                        "3-1"
+                    ),
+                "2,1" : Prompt(
+                    "You carefully peek into the hatch. There are eyes peering back at you.",
+                    "Slam the hatch shut",
+                    "Reach out and pet the creature",
+                    "2-1"
+                ),
+                    "3,2" : Prompt(
+                        "You slam the hatch shut, unfortunately on your fingers. You've realized you're made of sand. You have dissolved.",
+                        "Restart",
+                        "Restart",
+                        "3-2"
+                    ),
+                    "3,3" : Prompt(
+                        "The creature can speak! \"We've been trying to reach you concerning your vehicle's extended warranty...\"",
+                        "Restart",
+                        "Restart",
+                        "3-3"
+                    ),
         "1,1" : Prompt(
             "The right room has jagged walls and there are gale force winds. There is a chest. You can continue deeper or open the chest.",
             "Continue deeper",
-            "Open chest"
+            "Open chest",
+            "1-1"
         ),
-        "2,0" : Prompt(
-            "You open the door and a giant hand grabs you and launches in you into space. Goodbye!",
-            "Restart",
-            "Restart"
-        ),
-        "2,1" : Prompt(
-            "You carefully peek into the hatch. Unfortunately you've been reduced to singularity. Sorry!",
-            "Restart",
-            "Restart"
-        ),
-        "2,2" : Prompt(
-            "You continue deeper into infinite darkness. See you never!",
-            "Restart",
-            "Restart"
-        ),
-        "2,3" : Prompt(
-            "You open the chest and it reveals the game makers creativity. Isn't it apparent he lost it some time ago?",
-            "Restart",
-            "Restart"
-        ),
+            "2,2" : Prompt(
+                "You continue deeper into the darkness. On the left is a wide and spacious tunnel, while the other is cramped and tight.",
+                "Go left",
+                "Go right",
+                "2-2"
+            ),
+                "3,4" : Prompt(
+                    "You go left and you've found the game designers creativity. It's pretty obvious they've been missing it this entire time.",
+                    "Restart",
+                    "Restart",
+                    "3-4"
+                ),
+                "3,5" : Prompt(
+                    "You go right and you've gotten stuck. Your only option is to eat your way out, stone by stone.",
+                    "Restart",
+                    "Restart",
+                    "3-5"
+                ),
+            "2,3" : Prompt(
+                "You open the chest and it is filled with glittering jewels, sparking gold coins, and ornate artifacts. Do you take them?",
+                "Yes",
+                "No",
+                "2-3"
+            ),
+                "3,6" : Prompt(
+                    "As soon as you touch the coins, you are transported to your Aunt Edith's living room, never to return.",
+                    "Restart",
+                    "Restart",
+                    "3-6"
+                ),
+                "3,7" : Prompt(
+                    "You exercise restraint and shut the chest. You hear a hissing noise and then pass out...",
+                    "Restart",
+                    "Restart",
+                    "3-7"
+                )
     ]
     
     mutating func compareUserChoice(_ key: String, _ choice: String) {
-//        let currentCoordinates = key.components(separatedBy: ",")
-//        let x : Int? = Int(currentCoordinates[0])
-//        let y : Int? = Int(currentCoordinates[0])
         var newCoordinates : String = ""
         let x : Int? = Int(currentCoordinates.components(separatedBy: ",")[0])
         let y : Int? = Int(currentCoordinates.components(separatedBy: ",")[1])
@@ -76,12 +128,12 @@ struct PromptLogic {
     }
     
     func getPrompt(_ key: String) -> String? {
-        guard let prompt = prompts[key]?.prompt else { return nil}
+        guard let prompt = prompts[key]?.prompt else { return ""}
         return prompt
     }
     
     func getSpecifiedOption(_ key: String, _ option: Int) -> String? {
-        guard let retOption = option == 0 ? prompts[key]?.option_one : prompts[key]?.option_two else { return nil }
+        guard let retOption = option == 0 ? prompts[key]?.option_one : prompts[key]?.option_two else { return "" }
         return retOption
     }
     
@@ -89,5 +141,8 @@ struct PromptLogic {
         return currentCoordinates
     }
     
-    // Add new images per prompt?
+    func getBackgroundImage() -> String {
+        guard let retImageName = prompts[currentCoordinates]?.image else { return ""}
+        return retImageName
+    }
 }

@@ -15,6 +15,8 @@ class ViewController: UIViewController {
     
     @IBOutlet weak var optionTwoBtn: UIButton!
     
+    @IBOutlet weak var background: UIImageView!
+    
     var promptLogic = PromptLogic();
     
     override func viewDidLoad() {
@@ -24,12 +26,10 @@ class ViewController: UIViewController {
         optionTwoBtn.setTitle(promptLogic.getSpecifiedOption(promptLogic.getCurrentCoordinates(), 1), for: .normal)
     }
     
-    
     @IBAction func choiceSubmitted(_ sender: UIButton) {
         let userAnswer = sender.titleLabel!.text!
         
         promptLogic.compareUserChoice(promptLogic.getCurrentCoordinates(), userAnswer)
-//        currentCoordinates = newCoordinates
         
         Timer.scheduledTimer(timeInterval: 0.1, target: self, selector: #selector(updateUI), userInfo: nil, repeats: false)
     }
@@ -41,17 +41,9 @@ class ViewController: UIViewController {
         let optionOneTitle = promptLogic.getSpecifiedOption(promptLogic.getCurrentCoordinates(), 0)
         let optionTwoTitle = promptLogic.getSpecifiedOption(promptLogic.getCurrentCoordinates(), 1)
         
-//        if (optionOneTitle == "Restart" || optionTwoTitle == "Restart") {
-//            currentCoordinates = "0,0"
-//            promptLabel.text = promptLogic.getPrompt(currentCoordinates)
-//            optionOneBtn.setTitle(promptLogic.getSpecifiedOption(currentCoordinates, 0), for: .normal)
-//            optionTwoBtn.setTitle(promptLogic.getSpecifiedOption(currentCoordinates, 1), for: .normal)
-//        }
-        
         optionOneBtn.setTitle(optionOneTitle, for: .normal)
         optionTwoBtn.setTitle(optionTwoTitle, for: .normal)
         
-//        buttonOne.backgroundColor = UIColor.clear
-//        buttonTwo.backgroundColor = UIColor.clear
+        background.image = UIImage(named: promptLogic.getBackgroundImage())
     }
 }
