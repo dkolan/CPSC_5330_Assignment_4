@@ -12,13 +12,13 @@ struct PromptLogic {
     var currentCoordinates : String = "0,0"
     let prompts = [
         "0,0" : Prompt(
-            "You find yourself in the entrance of a strange cave. You see two rooms: one with a warm and inviting path is illuminated by soft light; the other is a dark and foreboding path beckons.",
+            "You find yourself in the entrance of a strange cave. You see two rooms: one with a warm and inviting path that is illuminated by soft light; the other is a dark and foreboding path.",
             "Go left",
             "Go right",
             "caveStart"
         ),
             "1,0" : Prompt(
-                "The left room fills with a warm light as you enter; however, you notice two passageways. One door, and one hatch.",
+                "The left room fills with a warm light as you enter; however, you notice two passageways. One is a door and one is a hatch.",
                 "Door",
                 "Hatch",
                 "1-0"
@@ -36,7 +36,7 @@ struct PromptLogic {
                         "3-0"
                     ),
                     "3,1" : Prompt(
-                        "You've found a room filled with gold coins, hooray! Unfortunately, it's all a dream and you wake up in your Twitter sponsored prison cell in Muskburgh, Mars.",
+                        "You've found a room filled with gold coins, hooray! Unfortunately, it's all a dream and you wake up in your Tesla sponsored prison cell in Muskburgh, Mars.",
                         "Restart",
                         "Restart",
                         "3-1"
@@ -72,7 +72,7 @@ struct PromptLogic {
                 "2-2"
             ),
                 "3,4" : Prompt(
-                    "You go left and you've found the game designers creativity. It's pretty obvious they've been missing it this entire time.",
+                    "You go left and see an illuminated chest which houses the game designers creativity! It's pretty obvious they've been missing it this entire time. Congratulations!",
                     "Restart",
                     "Restart",
                     "3-4"
@@ -84,7 +84,7 @@ struct PromptLogic {
                     "3-5"
                 ),
             "2,3" : Prompt(
-                "You open the chest and it is filled with glittering jewels, sparking gold coins, and ornate artifacts. Do you take them?",
+                "You open the chest and it's filled with glittering jewels, sparkling gold coins, and ornate artifacts. Do you take them?",
                 "Yes",
                 "No",
                 "2-3"
